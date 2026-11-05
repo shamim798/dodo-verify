@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Dodo {anty} — Anti-Detect Browser for Windows, macOS & Linux</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Announcement Ribbon */
+    .promo-ribbon {
+      background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+      color: #ffffff;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .promo-ribbon a {
+      color: #fef08a;
+      text-decoration: underline;
+    }
+
+    /* Navigation */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #0f172a;
+    }
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #a855f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 19px;
+    }
+    .brand-title {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .brand-title span {
+      font-weight: 400;
+      color: #a855f7;
+    }
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #475569;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover {
+      color: #a855f7;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-actions .lang-btn {
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-actions .login-link {
+      color: #0f172a;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 600;
+    }
+    .btn-create-acc {
+      background: #b044f5;
+      color: #ffffff !important;
+      padding: 10px 20px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(176, 68, 245, 0.35);
+      transition: transform 0.15s, background 0.15s;
+    }
+    .btn-create-acc:hover {
+      background: #9d30e4;
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    .main-wrap {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .main-title {
+      font-size: 42px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 50px;
+      letter-spacing: -0.8px;
+    }
+
+    /* Platform Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 860px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin: 0 auto 40px auto;
+      }
+      .nav-links { display: none; }
+    }
+
+    .platform-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 40px 28px 30px 28px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .platform-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border-color: #cbd5e1;
+    }
+    .platform-card.featured {
+      border-color: rgba(168, 85, 247, 0.5);
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.12);
+    }
+
+    .os-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+    }
+    .os-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 24px;
+    }
+
+    .btn-download-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #b044f5;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      box-shadow: 0 4px 18px rgba(176, 68, 245, 0.35);
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      margin-bottom: 14px;
+    }
+    .btn-download-action:hover {
+      background: #9d30e4;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(176, 68, 245, 0.45);
+    }
+
+    .os-footnote {
+      font-size: 12.5px;
+      color: #94a3b8;
+    }
+    .os-footnote a {
+      color: #64748b;
+      text-decoration: none;
+      margin: 0 4px;
+    }
+    .os-footnote a:hover {
+      color: #a855f7;
+      text-decoration: underline;
+    }
+
+    .support-note {
+      font-size: 13.5px;
+      color: #64748b;
+      margin-bottom: 60px;
+    }
+    .support-note a {
+      color: #64748b;
+      text-decoration: underline;
+    }
+
+    /* Floating Center Heart Badge */
+    .heart-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 40px auto 60px auto;
+    }
+    .heart-badge img {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+    }
+    .heart-text {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* Footer */
+    .footer-section {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 60px 48px 30px 48px;
+      margin-top: auto;
+    }
+    .footer-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+    .footer-col a {
+      color: #64748b;
+      text-decoration: none;
+      font-size: 13.5px;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover {
+      color: #a855f7;
+    }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      color: #94a3b8;
+    }
+
+    /* Download Started Notification Banner */
+    .download-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 16px 22px;
+      border-radius: 14px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 99999;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .download-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Ribbon -->
+  <div class="promo-ribbon">
+    <span>🚀 <strong>Dodo {anty}</strong> — Free Anti-Detect Browser with Unlimited Dedicated USA Virginia Proxy</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="brand">
+      <div class="brand-icon">D</div>
+      <div class="brand-title">Dodo<span>{anty}</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#usecases">Use cases</a></li>
+      <li><a href="#proxies">Proxies</a></li>
+      <li><a href="#documentation">Documentation</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="lang-btn">EN ▾</button>
+      <a href="https://shamim798.github.io/dodo-verify/" class="login-link">Sign in</a>
+      <a href="https://shamim798.github.io/dodo-verify/" class="btn-create-acc">Create account</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-wrap">
+    <h1 class="main-title">Download Dodo {anty}</h1>
+
+    <div class="cards-grid">
+      
+      <!-- Windows Card (Active Direct Download) -->
+      <div class="platform-card featured">
+        <svg class="os-icon" viewBox="0 0 24 24" fill="#a855f7">
+          <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.902-1.802"/>
+        </svg>
+        <h3 class="os-title">Windows</h3>
+        
+        <button class="btn-download-action" onclick="downloadWindowsInstaller()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </button>
+
+        <span class="os-footnote">64 bit</span>
+      </div>
+
+      <!-- macOS Card -->
+      <div class="platform-card">
+        <svg class="os-icon" viewBox="0 0 24 24" fill="#a855f7">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 1.04-2.88 0-.15-.01-.3-.04-.45-.99.04-2.19.66-2.9 1.49-.55.63-1.03 1.66-1.03 2.72 0 .16.03.32.05.37.08.01.2.02.32.02.91 0 1.94-.52 2.56-1.27z"/>
+        </svg>
+        <h3 class="os-title">macOS</h3>
+        
+        <button class="btn-download-action" onclick="alert('macOS build is compiling. Please download Windows 64-bit!')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </button>
+
+        <span class="os-footnote">Intel and Apple Silicon</span>
+      </div>
+
+      <!-- Linux Card -->
+      <div class="platform-card">
+        <svg class="os-icon" viewBox="0 0 24 24" fill="#a855f7">
+          <path d="M12 2C9.5 2 7.5 4 7.5 6.5c0 1.5.5 3 1.5 4-1.5 1-3 3-3 6.5 0 2 1.5 3 3 3h6c1.5 0 3-1 3-3 0-3.5-1.5-5.5-3-6.5 1-1 1.5-2.5 1.5-4C16.5 4 14.5 2 12 2z"/>
+        </svg>
+        <h3 class="os-title">Linux</h3>
+        
+        <button class="btn-download-action" onclick="alert('Linux AppImage is compiling. Please download Windows 64-bit!')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download AppImage
+        </button>
+
+        <span class="os-footnote">
+          <a href="#" onclick="alert('Please download Windows 64-bit!')">Download .deb</a> • 
+          <a href="#" onclick="alert('Please download Windows 64-bit!')">Download .rpm</a>
+        </span>
+      </div>
+
+    </div>
+
+    <p class="support-note">
+      If manual download failed — <a href="mailto:mdshamim.artist@gmail.com">write to support</a> we will help.
+    </p>
+
+    <!-- Center Squircle Badge -->
+    <div class="heart-badge">
+      <div class="brand-icon" style="width:44px; height:44px; border-radius:12px; font-size:24px;">D</div>
+      <span class="heart-text">Created with ❤️ for professional power users</span>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Dodo{anty}</h4>
+        <ul>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Use cases</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Reviews</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Partners</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Online chat</a></li>
+          <li><a href="#">Support email</a></li>
+          <li><a href="#">Telegram Group</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Download Dodo{anty}</h4>
+        <ul>
+          <li><a href="#" onclick="downloadWindowsInstaller()">For Windows (64-bit)</a></li>
+          <li><a href="#">For macOS</a></li>
+          <li><a href="#">For Linux</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 DodoDeck software solutions LTD. All rights reserved.</span>
+      <div>
+        <a href="#" style="color:#94a3b8; margin-right:16px;">Terms of Use</a>
+        <a href="#" style="color:#94a3b8;">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast on download click -->
+  <div class="download-toast" id="download-toast">
+    <div style="font-size:24px;">📥</div>
+    <div>
+      <strong style="display:block; font-size:14px; margin-bottom:2px;">Download Starting...</strong>
+      <span style="font-size:12px; color:#cbd5e1;">dodo-anty-win-x64-latest.exe</span>
+    </div>
+  </div>
+
+  <script>
+    function downloadWindowsInstaller() {
+      const toast = document.getElementById('download-toast');
+      toast.classList.add('show');
+      
+      // Direct link to the installer release
+      const downloadUrl = 'https://github.com/shamim798/dodo-verify/releases/download/v1.0.0/dodo-anty-win-x64-latest.exe';
+      
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'dodo-anty-win-x64-latest.exe';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
