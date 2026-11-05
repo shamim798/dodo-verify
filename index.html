@@ -168,10 +168,21 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email');
+    const token = params.get('token');
     if (email) {
       document.getElementById('user-email').innerText = email;
+
+      // Automatically inform the local Dodo {anty} desktop app on port 39290
+      fetch(`http://127.0.0.1:39290/api/verify?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token || '')}`)
+        .then(r => r.json())
+        .then(res => console.log("Local verify response:", res))
+        .catch(err => console.log("Local app ping:", err.message));
     }
+
     function openApp() {
+      if (email) {
+        fetch(`http://127.0.0.1:39290/api/verify?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token || '')}`).catch(()=>{});
+      }
       window.location.href = 'dodo-anty://verified';
       setTimeout(() => {
         alert('You can now return to the Dodo {anty} desktop application to sign in!');
