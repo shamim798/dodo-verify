@@ -1,0 +1,15 @@
+{
+  "version": "132.0.6834.83",
+  "name": "Dodo C++ Anti-Detect Chromium Core v132",
+  "releaseDate": "2026-11-09",
+  "fileSize": "48.2 MB",
+  "changelog": [
+    "Native C++ sub-pixel Canvas noise injection via getImageData",
+    "Blink WebGL GPU Vendor & Renderer hardware cloaking",
+    "WebAudio nano-second frequency phase variance",
+    "WebRTC local IPv4/IPv6 leak prevention",
+    "Zero-downtime background decoupled auto-update"
+  ],
+  "downloadUrl": "https://github.com/shamim798/dodo-verify/releases/download/core-v132/dodo-core-win-x64-132.zip",
+  "mandatory": false
+}
